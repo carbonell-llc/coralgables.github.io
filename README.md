@@ -1,2 +1,3 @@
-# coralgables.github.io
-City of Coral Gables Live Social Feed
+# City of Coral Gables
+
+City of Coral Gables Smart Cities Competition Website
