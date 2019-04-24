@@ -148,6 +148,19 @@
         </div>
         
         <div class="row">
+          <div class="col-md-12">
+            <div class="card card-plain">
+              <div class="card-header">
+                Abnormal Social Traffic Heatmap
+              </div>
+              <div class="card-body">
+                <div id="map" class="map"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
           <div class="col-lg-3">
             <div class="card card-chart">
               <div class="card-header">
@@ -182,7 +195,7 @@
           </div>
         </div>
         
-        <div class="row">
+        <div id="top-posts" class="row" >
           <div class="col-lg-6 col-md-12">
             <div class="card ">
               <div class="card-header">
@@ -208,103 +221,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          Dakota Rice
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-center">
-                          $36,738
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-center">
-                          $23,789
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Sage Rodriguez
-                        </td>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-center">
-                          $56,142
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Philip Chaney
-                        </td>
-                        <td>
-                          Korea, South
-                        </td>
-                        <td>
-                          Overland Park
-                        </td>
-                        <td class="text-center">
-                          $38,735
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Doris Greene
-                        </td>
-                        <td>
-                          Malawi
-                        </td>
-                        <td>
-                          Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-center">
-                          $63,542
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Mason Porter
-                        </td>
-                        <td>
-                          Chile
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-center">
-                          $78,615
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Jon Porter
-                        </td>
-                        <td>
-                          Portugal
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-center">
-                          $98,615
-                        </td>
+                      <tr v-for="(post, index) in posts" :key="index">
+                        <td>{{ post.owner }}</td>
+                        <td>{{ post.posted }}</td>
+                        <td>{{ post.likes.toLocaleString() }}</td>
+                        <td class="text-center">{{ post.comments.toLocaleString() }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -319,14 +240,14 @@
                 <h3 class="card-title"> Top Post</h3>
                 <h4 class="card-category">
                     <ul class="list-inline">
-                      <li class="list-inline-item"><span class="text-danger"><strong>Likes:</strong> </span> 1,234</li>
-                      <li class="list-inline-item"><span class="text-info"><strong>Comments:</strong> </span> 342</li>
+                      <li class="list-inline-item"><span class="text-danger"><strong>Likes:</strong> </span> {{ top_post.likes | pretty }}</li>
+                      <li class="list-inline-item"><span class="text-info"><strong>Comments:</strong> </span> {{ top_post.comments }}</li>
                     </ul>
                 </h4>
                 
               </div>
               <div class="card-body" style="margin-left: auto; margin-right: auto;">
-                <img src="https://source.unsplash.com/random/400x400" alt="...">
+                <img :src="top_post.url" :alt="top_post.owner">
               </div>
           </div>
         </div>
@@ -355,103 +276,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>
-                          Dakota Rice
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-center">
-                          $36,738
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Minerva Hooper
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-center">
-                          $23,789
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Sage Rodriguez
-                        </td>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-center">
-                          $56,142
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Philip Chaney
-                        </td>
-                        <td>
-                          Korea, South
-                        </td>
-                        <td>
-                          Overland Park
-                        </td>
-                        <td class="text-center">
-                          $38,735
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Doris Greene
-                        </td>
-                        <td>
-                          Malawi
-                        </td>
-                        <td>
-                          Feldkirchen in Kärnten
-                        </td>
-                        <td class="text-center">
-                          $63,542
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Mason Porter
-                        </td>
-                        <td>
-                          Chile
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-center">
-                          $78,615
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Jon Porter
-                        </td>
-                        <td>
-                          Portugal
-                        </td>
-                        <td>
-                          Gloucester
-                        </td>
-                        <td class="text-center">
-                          $98,615
-                        </td>
+                      <tr v-for="(resident, index) in residents" :key="index">
+                        <td>{{ resident.account }}</td>
+                        <td>{{ resident.posts }}</td>
+                        <td>{{ resident.likes }}</td>
+                        <td class="text-center">{{ resident.comments }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -465,38 +294,25 @@
                 <p class="card-text">
                   <div class="author">
                     <a href="javascript:void(0)">
-                      <img class="avatar" src="../assets/img/emilyz.jpg" alt="...">
-                      <h5 class="title">Mike Andrew</h5>
+                      <img class="avatar" src="http://source.unsplash.com/random?bikini" alt="...">
+                      <h5 class="title">{{ top_resident.name }}</h5>
                     </a>
                     <p class="description">
-                      Ceo/Co-Founder
+                      {{ top_resident.career }}
                     </p>
                   </div>
                 </p>
                 <div class="card-description">
-                  Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                  {{ top_resident.description }}
                 </div>
               </div>
               <div class="card-footer">
-                <p class="text-info" align="center">https://www.coolperson.com</p>
+                <p class="text-info" align="center">{{ top_resident.url }}</p>
               </div>
           </div>
         </div>
-      </div>
+        </div>
 
-        
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card card-plain">
-              <div class="card-header">
-                Social Heatmap
-              </div>
-              <div class="card-body">
-                <div id="map" class="map"></div>
-              </div>
-            </div>
-          </div>
-        </div>
       
       <footer class="footer">
         <div class="container-fluid">
@@ -510,6 +326,127 @@
         </div>
       </footer>
     </div>
+    
+    
+      <div class="modal fade" id="predictionModal" tabindex="-1" role="dialog" aria-labelledby="predictionModal" aria-hidden="true" style="right: unset; left: 5vw;">
+        <div class="modal-dialog" role="document" style="max-width: none;">
+          <div class="modal-content" style="width: 90vw">
+            <div class="modal-header">
+              <h1>Top Events</h1>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card ">
+                    <div class="card-header">
+                      <h4 class="card-title"> Predictions</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table tablesorter " id="">
+                          <thead class=" text-primary">
+                            <tr>
+                              <th>
+                                Event
+                              </th>
+                              <th>
+                                Time Till
+                              </th>
+                              <th>
+                                Duration
+                              </th>
+                              <th>
+                                Confidence
+                              </th>
+                              <th>
+                                Affected Location
+                              </th>
+                              <th>
+                                Effect Description
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <b>Kylie Jenner</b>
+                                <br>
+                                <em class="text-muted">Pool Party</em>
+                              </td>
+                              <td>
+                                now
+                              </td>
+                              <td>
+                                3 hours
+                              </td>
+                              <td>
+                                <b>93%</b>
+                              </td>
+                              <td>
+                                Bus Route - 56
+                              </td>
+                              <td>
+                                <span class="text-danger">103% increase in traffic</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Kylie Jenner</b>
+                                <br>
+                                <em class="text-muted">Pool Party</em>
+                              </td>
+                              <td>
+                                2 Hours
+                              </td>
+                              <td>
+                                6 Hours
+                              </td>
+                              <td>
+                                <b>83%</b>
+                              </td>
+                              <td>
+                                Biltmore Hotel
+                              </td>
+                              <td>
+                                <span class="text-success">65% increase in sales</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <b>Kylie Jenner</b>
+                                <br>
+                                <em class="text-muted">Pool Party</em>
+                              </td>
+                              <td>
+                                now
+                              </td>
+                              <td>
+                                3 days
+                              </td>
+                              <td>
+                                <b>76%</b>
+                              </td>
+                              <td>
+                                Venture Hive
+                              </td>
+                              <td>
+                                32% increase in Instagram engagement
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
   
   <!--   Core JS Files   -->
@@ -528,6 +465,7 @@
   <script src="../assets/js/black-dashboard.min.js?v=1.0.0"></script>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+  <!-- ###Time Ago -->
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -651,6 +589,71 @@
       // Javascript method's body can be found in assets/js/demos.js
       demo.initGoogleMaps();
     });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+  
+  <script>
+    new Vue({
+      el: "#top-posts",
+      data: {
+        posts: _.times(8, function() {
+          return {
+            owner: faker.name.findName(),
+            posted: moment().subtract(faker.random.number(), 'seconds').fromNow(),
+            likes: faker.random.number() * faker.random.number(),
+            comments: faker.random.number(),
+            url: "https://source.unsplash.com/random/400x400?coral-gables"
+          }
+        }),
+        residents: _.times(8, function() {
+          return {
+            account: faker.internet.userName(),
+            name: faker.name.findName(),
+            career: faker.name.jobTitle(),
+            description: faker.lorem.paragraph(),
+            posts: Math.round(faker.random.number() * Math.random() * Math.random()),
+            likes: faker.random.number() * faker.random.number() * faker.random.number(),
+            comments: faker.random.number(),
+            img: "http://source.unsplash.com/random?bikini",
+            url: faker.internet.url()
+          }
+        })
+      },
+      computed: {
+        top_post() {
+          let self = this;
+          
+          return _.sortBy(self.posts, ["likes"])[0]
+        },
+        top_resident() {
+          let self = this;
+          
+          return _.sortBy(self.residents, ["likes"])[0]
+        }
+      },
+      filter: {
+        commas(v) {
+          return "queos"
+//           return _.chunk(_.reverse(_.split(v + "", "")).join(""), 3).reverse().map(function(str) { return str.join("") }).join(",");
+        },
+        pretty(v) {
+          // CHECK: https://github.com/Kikobeats/human-number
+          return (function(n, fn) {
+            const ALPHABET = 'KMGTPEZY'.split('')
+            const TRESHOLD = 1e3
+            
+            n = Math.abs(n)
+            var index = 0
+            while(n >= TRESHOLD && ++index < ALPHABET.length) { n /= TRESHOLD }
+            if(fn) n = fn(n)
+            return index === 0 ? n : n + ALPHABET[index - 1]
+          })(v)
+        }
+      }
+    })
   </script>
 </body>
 

@@ -518,16 +518,21 @@ demo = {
 
   initGoogleMaps: function() {
     var heatmapData = [
-      new google.maps.LatLng(25.74919650, -80.26356591),
-      new google.maps.LatLng(25.74919706, -80.26361067),
-      new google.maps.LatLng(25.74919613, -80.26351188),
-      new google.maps.LatLng(25.74919584, -80.26349029),
-      new google.maps.LatLng(25.74919574, -80.26343810),
-      new google.maps.LatLng(25.74919674, -80.26335785),
-      new google.maps.LatLng(25.74919665, -80.26364672),
-      new google.maps.LatLng(25.74919605, -80.26360684),
-      new google.maps.LatLng(25.74919657, -80.26350341),
-      new google.maps.LatLng(25.74919720, -80.26373670)
+      new google.maps.LatLng(25.740722, -80.279128),
+      new google.maps.LatLng(25.740442, -80.278912),
+      new google.maps.LatLng(25.740584, -80.278747),
+      new google.maps.LatLng(25.740183, -80.279076),
+      new google.maps.LatLng(25.740271, -80.279011),
+      new google.maps.LatLng(25.740309, -80.279502),
+      new google.maps.LatLng(25.739743, -80.279424),
+      new google.maps.LatLng(25.740828, -80.278410),
+      new google.maps.LatLng(25.740649, -80.278413),
+      new google.maps.LatLng(25.741169, -80.277426),
+      
+      new google.maps.LatLng(25.740591, -80.276579),
+      new google.maps.LatLng(25.744399, -80.281437),
+      new google.maps.LatLng(25.744406, -80.281147),
+      new google.maps.LatLng(25.744771, -80.281671)
     ];
     
     var myLatlng = new google.maps.LatLng(25.7491968, -80.2635411);
@@ -732,14 +737,18 @@ demo = {
     });
     
     heatmap.setMap(map);
+        
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(25.740905, -80.278635),
+      title: "Biltmore Hotel Miami Coral Gables",
+      map: map
+    });
     
-//     var marker = new google.maps.Marker({
-//       position: myLatlng,
-//       title: "Hello World!"
-//     });
+    marker.addListener('click', function() {
+      $('#predictionModal').modal('toggle');
+    });
 
-//     // To add the marker to the map, call setMap();
-//     marker.setMap(map);
+    // Creating multiple Google Map markers: https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example
   },
 
   showNotification: function(from, align) {
